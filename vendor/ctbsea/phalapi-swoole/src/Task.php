@@ -3,7 +3,7 @@
  *  基于swoole扩展的Task
  */
 
-namespace PhalApi\Swoole;
+namespace ctbsea\phalapiSwoole;
 class Task
 {
     /**
@@ -26,7 +26,7 @@ class Task
 
     public function run()
     {
-        $this->server = new swoole_server($this->setting['host'], $this->setting['port']);
+        $this->server = new \swoole_server($this->setting['host'], $this->setting['port']);
         $this->server->set($this->setting);
         //回调函数
         $call = [
