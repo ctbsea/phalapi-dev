@@ -11,13 +11,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ctbsea/phalapi-smarty.git",
-                "reference": "5c3522cb2c8fcdce666acaad0e1333b07db2880d"
+                "url": "https://github.com/ctbsea/phalapiSmarty.git",
+                "reference": "6304e42fd743371fc6cc8db896142b087b63c924"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/ctbsea/phalapi-smarty/5c3522cb2c8fcdce666acaad0e1333b07db2880d.zip",
-                "reference": "5c3522cb2c8fcdce666acaad0e1333b07db2880d",
+                "url": "https://files.phpcomposer.com/files/ctbsea/phalapiSmarty/6304e42fd743371fc6cc8db896142b087b63c924.zip",
+                "reference": "6304e42fd743371fc6cc8db896142b087b63c924",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "PhalApi\\Smarty\\": "src"
+                    "ctbsea\\phalapiSmarty\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -47,7 +47,7 @@
                 "phalapi",
                 "smarty"
             ],
-            "time": "2017-08-24 08:59:49"
+            "time": "2017-08-29 09:01:26"
         },
         {
             "name": "ctbsea/phalapi-swoole",
@@ -90,7 +90,7 @@
                 "phalapi",
                 "swoole"
             ],
-            "time": "2017-08-29 08:46:41"
+            "time": "2017-08-29T08:46:41+00:00"
         },
         {
             "name": "phalapi/kernal",

@@ -7,8 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ctbsea\\phalapiSwoole\\' => array($vendorDir . '/ctbsea/phalapi-swoole/src'),
-    'PhalApi\\Task\\' => array($vendorDir . '/phalapi/task/src'),
     'ctbsea\\phalapiSmarty\\' => array($vendorDir . '/ctbsea/phalapi-smarty/src'),
+    'PhalApi\\Task\\' => array($vendorDir . '/phalapi/task/src'),
     'PhalApi\\NotORM\\' => array($vendorDir . '/phalapi/notorm/src'),
     'PhalApi\\' => array($vendorDir . '/phalapi/kernal/src'),
     'App\\' => array($baseDir . '/src/app'),

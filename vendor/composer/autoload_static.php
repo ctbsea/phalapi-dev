@@ -16,11 +16,11 @@ class ComposerStaticInit84982da661e88dfc32a42a0c733bc95a
         'c' => 
         array (
             'ctbsea\\phalapiSwoole\\' => 21,
+            'ctbsea\\phalapiSmarty\\' => 21,
         ),
         'P' => 
         array (
             'PhalApi\\Task\\' => 13,
-            'PhalApi\\Smarty\\' => 15,
             'PhalApi\\NotORM\\' => 15,
             'PhalApi\\' => 8,
         ),
@@ -36,13 +36,13 @@ class ComposerStaticInit84982da661e88dfc32a42a0c733bc95a
         array (
             0 => __DIR__ . '/..' . '/ctbsea/phalapi-swoole/src',
         ),
+        'ctbsea\\phalapiSmarty\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ctbsea/phalapi-smarty/src',
+        ),
         'PhalApi\\Task\\' => 
         array (
             0 => __DIR__ . '/..' . '/phalapi/task/src',
-        ),
-        'PhalApi\\Smarty\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ctbsea/phalapi-smarty/src',
         ),
         'PhalApi\\NotORM\\' => 
         array (
