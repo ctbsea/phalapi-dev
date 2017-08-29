@@ -62,7 +62,7 @@ class cliServer
             }
         }
         date_default_timezone_set($this->config['timezone']);
-        $server = new \PhalApi\Swoole\Task($this->config);
+        $server = new \ctbsea\phalapiSwoole\Task($this->config);
         $server->run();
         //确保服务器启动后swoole-task-pid文件必须生成
         /*if (!empty(portBind($port)) && !file_exists(SWOOLE_TASK_PID_PATH)) {

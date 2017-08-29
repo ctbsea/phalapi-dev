@@ -61,7 +61,7 @@ class Task
         $this->setProcessName($server->setting['ps_name'] . '-master');
         //记录进程id,脚本实现自动重启
         $pid = "{$this->server->master_pid}\n{$this->server->manager_pid}";
-        file_put_contents($this->setting['pid_file'], $pid);
+        file_put_contents($this->setting['pidFile'], $pid);
     }
 
     /**
