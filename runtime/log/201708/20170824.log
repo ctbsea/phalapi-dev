@@ -1,0 +1,20 @@
+2017-08-24 13:44:20|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'Index.tpl' <-- 
+2017-08-24 13:57:51|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:31:26|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:39:53|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:40:05|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:40:51|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:41:15|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:43:13|ERROR|App.Hello.world| --> Smarty: 1():Missing '$template' parameter <-- 
+2017-08-24 15:53:28|ERROR|App.Hello.world| --> Smarty: 1():Missing '$template' parameter <-- 
+2017-08-24 15:53:30|ERROR|App.Hello.world| --> Smarty: 1():Missing '$template' parameter <-- 
+2017-08-24 15:53:31|ERROR|App.Hello.world| --> Smarty: 1():Missing '$template' parameter <-- 
+2017-08-24 15:53:39|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:53:39|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:53:40|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:54:26|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:56:14|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:56:15|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:58:18|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:58:18|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
+2017-08-24 15:58:18|ERROR|App.Hello.world| --> Smarty: Unable to load template file 'world.tpl' <-- 
