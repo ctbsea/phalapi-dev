@@ -59,11 +59,12 @@ class Task
      */
     public function onStart($server)
     {
-        Log::write($this->setting['logPath'] , 'swoole_task_server master worker start') ;
         $this->setProcessName($server->setting['ps_name'] . '-master');
         //记录进程id,脚本实现自动重启
         $pid = "{$this->server->master_pid}\n{$this->server->manager_pid}";
+        Log::write($this->setting['logPath'] , 'swoole_task_server master worker start master_pid:'.$this->server->master_pid .'-manager_pid:'.$this->server->manager_pid) ;
         file_put_contents($this->setting['pidFile'], $pid);
+        echo  "启动成功\n" ;
     }
 
     /**

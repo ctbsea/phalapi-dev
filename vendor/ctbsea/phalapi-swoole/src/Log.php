@@ -34,7 +34,7 @@ class Log
      * @param string $s_message 日志信息
      * @param string $s_type 日志类型
      */
-    public static function write($dir , $s_message, $s_type = 'log')
+    public static function write($dir , $s_message, $s_type = 'run')
     {
         $s_now_time = date('[Y-m-d H:i:s]');
         $s_now_day = date('Y_m_d');
