@@ -15,14 +15,14 @@ require_once __DIR__ . '/cliServer.php';
  * 检查命令 lsof 命令是否存在
  */
 
-//if (!function_exists('exec')) {
-//    exit('exec function is disabled' . PHP_EOL);
-//}
-//
-//exec("whereis lsof", $out);
-//if ( !isset($out[0]) || $out[0] == 'lsof:') {
-//    exit('lsof is not found' . PHP_EOL);
-//}
+if (!function_exists('exec')) {
+    exit('exec function is disabled' . PHP_EOL);
+}
+
+exec("whereis lsof", $out);
+if ( !isset($out[0]) || $out[0] == 'lsof:') {
+    exit('lsof is not found' . PHP_EOL);
+}
 
 /**
  * @var array swoole-http_server支持的进程管理命令

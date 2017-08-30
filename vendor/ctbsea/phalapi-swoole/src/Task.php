@@ -4,6 +4,8 @@
  */
 
 namespace ctbsea\phalapiSwoole;
+
+use ctbsea\phalapiSwoole\Log ;
 class Task
 {
     /**
@@ -57,7 +59,7 @@ class Task
      */
     public function onStart($server)
     {
-        echo 'Date:' . date('Y-m-d H:i:s') . "\t swoole_task_server master worker start\n";
+        Log::write($this->setting['logPath'] , 'swoole_task_server master worker start') ;
         $this->setProcessName($server->setting['ps_name'] . '-master');
         //记录进程id,脚本实现自动重启
         $pid = "{$this->server->master_pid}\n{$this->server->manager_pid}";
@@ -71,7 +73,7 @@ class Task
      */
     public function onManagerStart($server)
     {
-        echo 'Date:' . date('Y-m-d H:i:s') . "\t swoole_task_server manager worker start\n";
+        Log::write($this->setting['logPath'] , 'swoole_task_server manager worker start') ;
         $this->setProcessName($server->setting['ps_name'] . '-manager');
     }
 
@@ -81,7 +83,8 @@ class Task
     public function onShutdown()
     {
         unlink($this->setting['pid_file']);
-        echo 'Date:' . date('Y-m-d H:i:s') . "\t swoole_task_server shutdown\n";
+        Log::write($this->setting['logPath'] , 'swoole_task_server shutdown') ;
+
     }
 
     /**
@@ -107,13 +110,14 @@ class Task
      */
     public function onWorkerStop($server, $workerId)
     {
-        echo 'Date:' . date('Y-m-d H:i:s') . "\t swoole_task_server[{$server->setting['ps_name']}] worker:{$workerId} shutdown\n";
+        Log::write($this->setting['logPath'] , "swoole_task_server[{$server->setting['ps_name']}] worker:{$workerId} shutdown") ;
     }
 
     public function onReceive(swoole_server $serv, $fd, $from_id, $data)
     {
         $taskId = $serv->task($data);
-        $this->_log("Receive send to swoole_task_server [$taskId]", $data);
+        Log::write($this->setting['logPath'] , "Receive send to swoole_task_server [$taskId]" .print_r($data ,true) ,'Log') ;
+
     }
     /**
      * 任务处理
@@ -122,7 +126,6 @@ class Task
      * @param $taskId
      * @param $fromId
      * @param $request
-     *
      * @return mixed
      */
     public function onTask($server, $taskId, $fromId, $ret)
@@ -136,7 +139,7 @@ class Task
             $result['receive'] = $params;
             $this->serv->finish($result);
         }
-        $this->serv->finish('empty !!!!');
+        Log::write($this->setting['logPath'] , 'empty task' . print_r($params ,true) ,'error') ;
     }
 
     /**
@@ -148,7 +151,7 @@ class Task
      */
     public function onFinish($server, $taskId, $ret)
     {
-        $this->_log("swoole_task_server finish [$taskId]", $ret);
+        Log::write($this->setting['logPath'] , "swoole_task_server finish [$taskId]" .print_r($ret ,true) ,'log') ;
     }
 
     /**
@@ -162,6 +165,7 @@ class Task
     private function setProcessName($name)
     {
         if (PHP_OS == 'Darwin') {
+            Log::write($this->setting['logPath'] , "macos not support set process name" ,'error') ;
             return false;
         }
 
@@ -171,24 +175,15 @@ class Task
             if (function_exists('swoole_set_process_name')) {
                 swoole_set_process_name($name);
             } else {
-                throw new \Exception(__METHOD__ . "failed,require cli_set_process_title|swoole_set_process_name");
+                Log::write($this->setting['logPath'] , "failed,require cli_set_process_title|swoole_set_process_name" ,'error') ;
             }
         }
     }
 
-    /*
-     *   日志处理
-     */
-    private function _log($msg, $data)
-    {
-        if ($this->setLog) {
-            \PhalApi\DI()->logger->info($msg, $data);
-        }
-    }
 
     /*
- *   处理任务
- */
+     *   处理任务
+     */
     private function _doTask($taskName, $params)
     {
         try {
@@ -197,11 +192,9 @@ class Task
                 . '\\Api\\' . str_replace('_', '\\', ucfirst($api));
             return call_user_func(array($apiClass, $action));
 
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             //错误日志
-            echo $ex->getTraceAsString();
-            \PhalApi\DI()->logger->error("asynctask exception in swoole", $ex->getMessage());
-            $this->serv->finish("Exception: " . $ex->getMessage());
+            Log::write($this->setting['logPath'] , $ex->getMessage() ,'error') ;
         }
     }
 }
