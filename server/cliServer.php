@@ -64,11 +64,6 @@ class cliServer
         date_default_timezone_set($this->config['timezone']);
 	    $server = new \ctbsea\phalapiSwoole\Task($this->config);
         $server->run();
-        //确保服务器启动后swoole-task-pid文件必须生成
-        /*if (!empty(portBind($port)) && !file_exists(SWOOLE_TASK_PID_PATH)) {
-            exit("swoole-task pid文件生成失败( " . SWOOLE_TASK_PID_PATH . ") ,请手动关闭当前启动的swoole-task服务检查原因" . PHP_EOL);
-        }*/
-        exit("启动 swoole-task 服务成功" . PHP_EOL);
     }
 
     /*
