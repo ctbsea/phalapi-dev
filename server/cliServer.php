@@ -27,7 +27,7 @@ class cliServer
                 mkdir($this->logPath, 0777);
             }
             //pid文件
-            $this->pidFile = $this->logPath . $config['pidFile'];
+            $this->config['pidFile'] = $this->pidFile = $this->logPath . $config['pidFile'];
         } catch (Exception $e) {
             //记录错误日志
             throw $e;

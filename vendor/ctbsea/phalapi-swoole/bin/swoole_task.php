@@ -20,7 +20,7 @@ if (!function_exists('exec')) {
 }
 
 exec("whereis lsof", $out);
-if ($out[0] == 'lsof:') {
+if ( !isset($out[0]) || $out[0] == 'lsof:') {
     exit('lsof is not found' . PHP_EOL);
 }
 
