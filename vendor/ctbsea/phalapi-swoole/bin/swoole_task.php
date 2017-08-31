@@ -40,7 +40,7 @@ $cmds = [
  */
 $longopt = [
     'help',//显示帮助文档
-    'nodaemon',//以守护进程模式运行,不指定读取配置文件
+    'd',//以守护进程模式运行,不指定读取配置文件
     'host:',//监听主机ip, 0.0.0.0 表示所有ip
     'port:',//监听端口
 ];
@@ -98,8 +98,9 @@ if (!empty($opts['port'])) {
 /**
  * @var int 是否守护进程
  */
-if (isset($opts['d']) && in_array($opts['d'], array(1, 0))) {
-    $config['daemonize'] = $opts['d'];
+
+if (isset($opts['d'])) {
+    $config['daemonize'] = 1;
 }
 
 //初始化

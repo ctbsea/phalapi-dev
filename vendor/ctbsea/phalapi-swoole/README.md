@@ -1,4 +1,4 @@
-#基于PhalApi 2.*的Smarty拓展
+#基于PhalApi 2.*的Sswoole-task拓展
 
 ![](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)
 
@@ -21,99 +21,60 @@ PhalApi Library:[http://git.oschina.net/dogstar/PhalApi-Library](http://git.osch
 composer.json添加
 
     "require": {
-        "ctbsea/phalapi-smarty": "2.0.0"
+        "ctbsea/phalapi-swoole": "*"
     },
 
-##初始化Smarty
+##初始化Swoole
 
-PhalApi-Smarty的初始化也和其他拓展一样,我们只需要把上方**PhalApi Library**中的Smarty文件目录放到需要用到的项目的拓展中即可.
 
-但是view拓展和其他拓展有一些本质的区别就是需要有存放view页面的地方,这里使用一个干净的PhalApi项目进行演示,我们在public下创建如下结构
+1. 在项目目录新建server目录(server 可以更换其他名称)
+2. 将bin目录的cliServer.php/swoole_task.php 复制到server目录
+3. config 为参考配置放到app.php 配置里面
 
-![](http://i.imgur.com/rTNjNgC.png)
-
-然后我们在init末尾中加入如下代码:
-	
-	//接受一个参数,参数为view的路径
-	DI()->smarty = new Smarty_Lite('view');
-
-现在我们就已经初始化好了PhalApi-Smarty
 
 ##一个简单的例子
 
-我们在Default.Index接口中做如下修改:
+### 使用方法
 
-	public function index() {
+以默认配置启动swoole-task服务    
 
-        $param = array(
-            'name' => '喵咪',
-            'list' => array(
-                array(
-                    "id"   => 1,
-                    "name" => "test"
-                ),
-                array(
-                    "id"   => 2,
-                    "name" => "test2"
-                )
-            )
-        );
-        DI()->smarty->setParams($param);
-        DI()->smarty->show();
-    }
+```sh
+php swoole-task.php start 
+```
 
-同时修改index.tpl:
+关于swoole-task.php脚本的详细说明
 
-	<HTML>
-	<HEAD>
-	    <style type="text/css">
-	        p,table{
-	            margin: auto;
-	            width: 60%;
-	        }
-	    </style>
-	</HEAD>
-	<BODY>
-	Hello {$name}, welcome to smarty<br/>
-	
-	<table border="1">
-	    {section name = sec loop = $list}
-	        <tr>
-	            <td>{$list[sec].id}</td>
-	            <td>{$list[sec].name}</td>
-	        </tr>
-	    {/section}
-	</table>
-	
-	</BODY>
-	</HTML>
+- 参数
 
-此时我们再次运行Default.Index接口就有如下显示:
+```
+--d 以非守护进程模式启动，默认读取配置文件daemonize的值
+--help 显示帮忙
+--host 指定绑定的ip 默认读取配置文件 http_server.php中的host取值
+--port 指定绑定的端口，默认读取配置文件中的 http_server.php中的port的取值
+```
 
-![](http://i.imgur.com/rlIjGI2.png)
+- 命令
 
-setParams函数作为参数的媒介把接口中获取的参数放到模版里面进行处理,接受一个数组具体实现是对每一个参数进行**assign**操作,具体可以参考Smarty
+```
+start   //启动服务
+stop    //停止服务
+status  //查看状态
+list    //swoole-task服务列表
+```
 
-我们在show默认不传递参数是,会更具模块名和接口名来匹配对于的模版,比如Default.Index就会匹配到view/Default/Index.tpl,当然我们也可以指定跳转到摸个模版,比如创建一个模版名称为test.tpl,然后创建一个Default.test接口,我们在index接口进行一些修改
-	
-	DI()->smarty->show("Default.test");
+用例说明:
 
-这个时候我们访问Default.Index接口的时候就会先执行Default.Index的代码然后在执行,test方法的代码最好渲染Default中的test.tpl模版
-
-**注意:show跳转其他模块接口会执行跳转的接口,如果有参数验证会被拦截,所以使用场景比较适合处理用户登录过时跳转登录页面重新登录这类业务**
-
-##其他
-
-如果大家在使用IDE开发的时候嫌DI->smarty没有提示的话可以在如下目录加入此注释
-
-	\PhalApi\PhalApi\DI.php
-
-![](http://i.imgur.com/anwqdWh.png)
-
-这样就可以看到如下效果
-
-![](http://i.imgur.com/sGwfd3h.png)
+```
+//启动swoole-task服务，以项目根目录下的sw目录为业务目录
+php swoole-task.php  start 
+//停止swoole-task 服务
+php swoole-task.php stop
+//启动swoole-task 服务，使用host和port 覆盖默认配置
+php swoole-task.php --host 127.0.0.1 --port 9520 start
+//显示服务状态
+php swoole-task.php status
+```
 
 ##总结
 
-当前只是提供了一个简单的封装还有很多需要优化封装的功能其他各位小伙伴的补充.
+写的比简单 应该还有很多问题  文档还需后续继续补充  很多也是网上整理出来的 

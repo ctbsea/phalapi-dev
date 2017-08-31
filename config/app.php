@@ -42,7 +42,8 @@ return array(
             'task_worker_num' => 2,    //task进程,根据实际情况配置
             'task_max_request' => 10000,    //当task进程处理请求超过此值则关闭task进程,保障进程无内存泄露,
             'runtime' =>  API_ROOT . '/runtime' , //日志目录
-            'pidFile' => 'swoole_task_pid' //pid 文件目录
+            'pidFile' => 'swoole_task_pid'  ,//pid 文件目录
+            'task_ipc_mode' => 3  //模式3是完全争抢模式  1.7.2新增特性
         ],
     ),
 );
