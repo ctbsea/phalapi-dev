@@ -32,10 +32,6 @@ class Hello extends CApi {
 	 * @return int time 当前时间戳
 	 */
     public function world() {
-        //测试加密解密验证登录
 
-
-
-        return array('title' => 'Hello World!'.$this->title);
     }
 }
